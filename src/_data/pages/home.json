@@ -1,0 +1,57 @@
+{
+  "meta": {
+    "title": "LightLearnTech | Education. Technology. Opportunity.",
+    "description": "LightLearnTech expands access to quality education and technology for underserved children and young people in Nigeria, including children in IDP camps, with a special focus on girls in technology."
+  },
+  "hero": {
+    "eyebrow": "LightLearnTech Initiative",
+    "heading": "Education. Technology. Opportunity.",
+    "text": "LightLearnTech works to expand access to quality education and technology for underserved children and young people. We strengthen foundational learning and develop pathways into digital literacy, programming, STEM, robotics and emerging technologies, equipping young people with the knowledge and skills to pursue future opportunities.",
+    "buttons": [
+      { "label": "Our Programme", "url": "/our-programme/", "style": "primary" },
+      { "label": "Get Involved", "url": "/get-involved/", "style": "secondary" }
+    ]
+  },
+  "challenge": {
+    "show": true,
+    "eyebrow": "The challenge",
+    "heading": "Displacement makes learning gaps harder to close",
+    "paragraphs": [
+      "Nigeria's education crisis is particularly severe for children affected by displacement.",
+      "For displaced children, limited access to quality teaching and learning resources makes gaps in foundational learning even harder to close."
+    ],
+    "statistic": {
+      "text": "",
+      "source": "",
+      "year": ""
+    }
+  },
+  "pathway": {
+    "show": true,
+    "eyebrow": "Our pathway",
+    "heading": "From strong foundations to advanced technology",
+    "link": { "label": "See how our programme works", "url": "/our-programme/" }
+  },
+  "whatWeDo": {
+    "show": true,
+    "eyebrow": "What we do",
+    "heading": "Five connected areas of work",
+    "cardLinkUrl": "/what-we-do/"
+  },
+  "featuredProject": {
+    "show": true,
+    "eyebrow": "Featured project",
+    "projectSlug": "idp-camp-education-initiative",
+    "text": "Our first field engagement, at an IDP camp in Benue State, highlighted significant gaps in foundational learning and limited teaching resources.",
+    "link": { "label": "Read more", "url": "/projects/" },
+    "photo": null
+  },
+  "cta": {
+    "show": true,
+    "heading": "A child's circumstances should not define their potential.",
+    "buttons": [
+      { "label": "Volunteer", "url": "/get-involved/#volunteer", "style": "accent" },
+      { "label": "Partner with us", "url": "/get-involved/#partner", "style": "outline-light" }
+    ]
+  }
+}

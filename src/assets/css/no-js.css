@@ -1,0 +1,7 @@
+/* Loaded only when JavaScript is unavailable: show the menu in full, hide the toggle. */
+.nav-toggle { display: none !important; }
+@media (max-width: 1119.98px) {
+  .site-nav { display: block; position: static; box-shadow: none; padding: 0 0 1rem; border: 0; max-height: none; }
+  .site-header { position: static; }
+  .site-header__inner { flex-wrap: wrap; }
+}

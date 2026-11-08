@@ -1,0 +1,52 @@
+---
+layout: layouts/base.njk
+pageKey: programme
+permalink: /our-programme/
+---
+{#- Content: src/_data/pages/programme.json and src/_data/pathway.json (full) -#}
+{%- import "components/ui.njk" as ui with context -%}
+{%- set c = pages.programme -%}
+
+{{ ui.hero(c.hero) }}
+
+<section class="section section--tint" aria-labelledby="flow-heading">
+  <div class="container">
+    {{ ui.sectionHead("", c.pathwayHeading, "", "flow-heading", "center") }}
+    {{ ui.pathwayFull(pathway.full) }}
+  </div>
+</section>
+
+<section class="section" aria-labelledby="stages-heading">
+  <div class="container narrow">
+    {{ ui.sectionHead("", c.stagesHeading, "", "stages-heading") }}
+    <ol class="stages">
+      {%- for s in c.stages %}
+      <li class="stage">
+        <span class="stage__num" aria-hidden="true">{{ loop.index }}</span>
+        <div class="stage__body">
+          <h3 class="stage__title">
+            <span class="visually-hidden">Stage {{ loop.index }}: </span>{{ s.title }}
+            {%- if s.tag %} <span class="pill">{{ s.tag }}</span>{% endif %}
+          </h3>
+          {%- for p in s.paragraphs %}
+          <p>{{ p }}</p>
+          {%- endfor %}
+        </div>
+      </li>
+      {%- endfor %}
+    </ol>
+  </div>
+</section>
+
+{%- if c.quote %}
+<section class="section section--warm" aria-label="Our belief">
+  <div class="container narrow">
+    <blockquote class="quote">
+      <p>{{ c.quote }}</p>
+      <footer>{{ site.legalName }}</footer>
+    </blockquote>
+  </div>
+</section>
+{%- endif %}
+
+{{ ui.ctaBand(c.cta, "light") }}

@@ -1,0 +1,19 @@
+{
+  "meta": {
+    "title": "What We Do | LightLearnTech",
+    "description": "LightLearnTech's education-first, technology-enabled approach: foundational education, digital literacy, programming, STEM and robotics, and AI and innovation."
+  },
+  "hero": {
+    "eyebrow": "What We Do",
+    "heading": "Education first, enabled by technology",
+    "text": "LightLearnTech follows an education-first, technology-enabled approach. Teachers remain at the centre of learning, supported by educational resources, digital content and technology."
+  },
+  "cta": {
+    "heading": "See how these areas fit together",
+    "text": "Our programme takes every child through foundational learning, then opens pathways into programming and robotics.",
+    "buttons": [
+      { "label": "Our Programme", "url": "/our-programme/", "style": "primary" },
+      { "label": "Get Involved", "url": "/get-involved/", "style": "secondary" }
+    ]
+  }
+}

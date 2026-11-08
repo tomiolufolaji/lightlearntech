@@ -1,0 +1,61 @@
+{
+  "meta": {
+    "title": "Our Programme | LightLearnTech",
+    "description": "How the LightLearnTech programme works: foundational education for all children, assessment at ages 11–17, then Programming and Robotics tracks leading to competitions and projects."
+  },
+  "hero": {
+    "eyebrow": "Our Programme",
+    "heading": "A clear pathway from the classroom to competitions",
+    "text": "LightLearnTech follows an education-first, technology-enabled approach. Every child strengthens their foundations in class. Learners aged 11–17 can then progress into programming and robotics, and on to competitions and projects beyond the camp."
+  },
+  "pathwayHeading": "The LightLearnTech pathway",
+  "stagesHeading": "How each stage works",
+  "stages": [
+    {
+      "title": "Foundational Education",
+      "tag": "All children",
+      "icon": "book-open",
+      "paragraphs": [
+        "Camp teachers follow a structured timetable with an appropriate curriculum, textbooks and learning materials in Mathematics, English and Science. Rechargeable projectors display educational videos and visual resources linked to each lesson. The LightLearnTech AI Learning Assistant, currently in development, will help teachers by turning lessons into structured notes and visual materials that make learning clearer and easier to follow."
+      ]
+    },
+    {
+      "title": "Teacher Support",
+      "icon": "users",
+      "paragraphs": [
+        "Teachers are supported with curriculum materials, lesson resources and guidance on using classroom technology."
+      ]
+    },
+    {
+      "title": "Student Selection",
+      "tag": "Ages 11–17",
+      "icon": "clipboard-check",
+      "paragraphs": [
+        "Every learner aged 11–17 takes a short assessment of their learning level, interests and potential. Selected students join an Introductory Technology class, followed by a second assessment. Students who show strong understanding, interest and commitment progress into the Technology Programme. We actively encourage girls' participation at every stage."
+      ]
+    },
+    {
+      "title": "Technology Programme",
+      "icon": "cpu",
+      "paragraphs": [
+        "The Introductory Technology class covers the fundamentals of technology, programming and robotics, so every participant can discover where their interests lie. Students then join a primary track, Programming or Robotics, based on their interests and performance.",
+        "Each track starts with the basics and builds to more advanced concepts, projects and challenges. Tracks are reviewed each term, and students can switch if their interests change."
+      ]
+    },
+    {
+      "title": "Advanced Development",
+      "icon": "trophy",
+      "paragraphs": [
+        "After sustained training and clear growth in their skills, students are supported to take part in national and global competitions, innovation challenges and collaborative projects. These let them showcase their talents, gain valuable experience and connect with people and opportunities beyond their immediate environment."
+      ]
+    }
+  ],
+  "quote": "We believe children in IDP camps should be defined not by life in the camps, but by their potential and what they are capable of achieving.",
+  "cta": {
+    "heading": "Help more children take the next step",
+    "buttons": [
+      { "label": "Get Involved", "url": "/get-involved/", "style": "primary" },
+      { "label": "See our projects", "url": "/projects/", "style": "secondary" }
+    ]
+  }
+}

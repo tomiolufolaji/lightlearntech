@@ -1,0 +1,22 @@
+---
+layout: layouts/base.njk
+permalink: /404.html
+metaTitle: Page not found | LightLearnTech
+metaDescription: Sorry, we couldn't find that page on the LightLearnTech website.
+noindex: true
+excludeFromSitemap: true
+---
+<section class="section error-page">
+  <div class="container narrow text-center">
+    <span class="error-page__icon">{{ iconSvg("compass") | safe }}</span>
+    <p class="eyebrow">Error 404</p>
+    <h1>We couldn't find that page</h1>
+    <p class="lead">The page may have moved, or the link may be mistyped. These pages may help:</p>
+    <ul class="link-grid">
+      {%- for item in site.nav %}
+      <li><a href="{{ item.url }}">{{ item.label }}</a></li>
+      {%- endfor %}
+    </ul>
+    <a class="btn btn--primary" href="/">Go to the home page</a>
+  </div>
+</section>

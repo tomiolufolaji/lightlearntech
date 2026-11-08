@@ -1,0 +1,58 @@
+{
+  "summary": {
+    "caption": "Every child builds strong foundations. Selected learners go further.",
+    "steps": [
+      { "icon": "book-open", "title": "Foundational Education", "tag": "All children" },
+      { "icon": "clipboard-check", "title": "Assessment", "tag": "Ages 11–17" },
+      { "icon": "presentation", "title": "Introductory Technology class", "tag": "Selected learners" }
+    ],
+    "tracks": [
+      { "icon": "code-xml", "title": "Programming track" },
+      { "icon": "bot", "title": "Robotics track" }
+    ],
+    "branchLabel": "or",
+    "final": { "icon": "trophy", "title": "Advanced Development", "tag": "Competitions and projects" }
+  },
+
+  "full": {
+    "steps": [
+      {
+        "icon": "book-open",
+        "tag": "All children",
+        "title": "Foundational Education",
+        "text": "Mathematics, English and Science, taught by camp teachers with structured resources."
+      },
+      {
+        "icon": "clipboard-check",
+        "tag": "Ages 11–17",
+        "title": "Assessment 1",
+        "text": "Learning level, interests and potential."
+      },
+      {
+        "icon": "presentation",
+        "tag": "Selected learners",
+        "title": "Introductory Technology class",
+        "text": "Fundamentals of technology, programming and robotics."
+      },
+      {
+        "icon": "clipboard-check",
+        "tag": "Next step",
+        "title": "Assessment 2",
+        "text": "Understanding, interest and commitment."
+      }
+    ],
+    "branchTag": "By interest and performance",
+    "tracks": [
+      { "icon": "code-xml", "title": "Programming track" },
+      { "icon": "bot", "title": "Robotics track" }
+    ],
+    "switchNote": "Students can switch tracks at a termly review",
+    "final": {
+      "icon": "trophy",
+      "tag": "Both tracks lead to",
+      "title": "Advanced Development",
+      "text": "National and global competitions, innovation challenges and collaborative projects."
+    },
+    "note": "Children under 11, and those not selected, continue in foundational classes."
+  }
+}

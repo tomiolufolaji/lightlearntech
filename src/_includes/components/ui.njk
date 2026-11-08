@@ -1,0 +1,285 @@
+{#-
+  Reusable UI components. Import in a page with:
+    {% import "components/ui.njk" as ui with context %}
+  Every component takes plain data (from src/_data or front matter), so the same
+  structures can later be supplied by a CMS.
+-#}
+
+{#- Button / link styled as a button. btn = { label, url, style } -#}
+{% macro button(btn) -%}
+<a class="btn btn--{{ btn.style or 'primary' }}" href="{{ btn.url }}">{{ btn.label }}</a>
+{%- endmacro %}
+
+{% macro buttons(list, extraClass="") -%}
+{%- if list and list.length %}
+<div class="btn-row {{ extraClass }}">
+  {%- for b in list %}{{ button(b) }}{% endfor %}
+</div>
+{%- endif %}
+{%- endmacro %}
+
+{#- Page hero. hero = { eyebrow, heading, text, buttons }. variant: "home" | "page" -#}
+{% macro hero(h, variant="page") -%}
+<section class="hero hero--{{ variant }}" aria-labelledby="hero-heading">
+  <div class="container hero__inner">
+    <div class="hero__copy">
+      {%- if h.eyebrow %}<p class="eyebrow">{{ h.eyebrow }}</p>{% endif %}
+      <h1 id="hero-heading" class="hero__heading">{{ h.heading }}</h1>
+      {%- if h.text %}<p class="hero__text">{{ h.text }}</p>{% endif %}
+      {{ buttons(h.buttons) }}
+    </div>
+    {%- if variant == "home" %}
+    <div class="hero__art">
+      {#- IMAGE SLOT (home hero): illustration only. Do not replace with photos of identifiable children. -#}
+      {% include "components/illustration-hero.njk" %}
+    </div>
+    {%- endif %}
+  </div>
+</section>
+{%- endmacro %}
+
+{#- Section heading block -#}
+{% macro sectionHead(eyebrow, heading, intro="", id="", align="") -%}
+<div class="section-head{% if align %} section-head--{{ align }}{% endif %}">
+  {%- if eyebrow %}<p class="eyebrow">{{ eyebrow }}</p>{% endif %}
+  <h2 class="section-head__heading"{% if id %} id="{{ id }}"{% endif %}>{{ heading }}</h2>
+  {%- if intro %}<p class="section-head__intro">{{ intro }}</p>{% endif %}
+</div>
+{%- endmacro %}
+
+{#- Card. c = { icon, title, text, url, linkLabel }. headingLevel defaults to h3 -#}
+{% macro card(c, headingLevel=3) -%}
+<article class="card{% if c.url %} card--link{% endif %}">
+  {%- if c.icon %}<span class="card__icon">{{ iconSvg(c.icon) | safe }}</span>{% endif %}
+  <h{{ headingLevel }} class="card__title">
+    {%- if c.url %}<a href="{{ c.url }}">{{ c.title }}</a>{% else %}{{ c.title }}{% endif -%}
+  </h{{ headingLevel }}>
+  {%- if c.text %}<p class="card__text">{{ c.text }}</p>{% endif %}
+  {%- if c.linkLabel and c.url %}<span class="card__more" aria-hidden="true">{{ c.linkLabel }} {{ iconSvg("arrow-right") | safe }}</span>{% endif %}
+</article>
+{%- endmacro %}
+
+{#- Status badge -#}
+{% macro status(s) -%}
+{%- if s %}<span class="status {{ s | statusClass }}">{{ s }}</span>{% endif -%}
+{%- endmacro %}
+
+{#- Project card (Projects listing). p = a project collection item -#}
+{% macro projectCard(p, labels) -%}
+{%- set d = p.data -%}
+<article class="project-card">
+  {{ imageSlot(d.media[0] if d.media and d.media.length else null, d.icon or "folder-open", "project-card__media", "IMAGE SLOT: project cover (first item in this project's media list)") }}
+  <div class="project-card__body">
+    <div class="project-card__meta">
+      {{ status(d.status) }}
+      {%- if d.location %}<span class="meta-item">{{ iconSvg("map-pin") | safe }}<span class="visually-hidden">{{ labels.location }}: </span>{{ d.location }}</span>{% endif %}
+      {%- if d.projectDate %}<span class="meta-item">{{ iconSvg("calendar") | safe }}<span class="visually-hidden">{{ labels.date }}: </span>{{ d.projectDate }}</span>{% endif %}
+    </div>
+    <h3 class="project-card__title"><a href="{{ p.url }}">{{ d.title }}</a></h3>
+    {%- set blurb = d.summary or d.purpose %}
+    {%- if blurb %}<p>{{ blurb }}</p>{% endif %}
+    <span class="card__more" aria-hidden="true">{{ labels.readMore }} {{ iconSvg("arrow-right") | safe }}</span>
+  </div>
+</article>
+{%- endmacro %}
+
+{#-
+  Image slot. photo = { file, alt, width, height } produced by `npm run images`
+  (writes {file}-800/-1600 .webp and .jpg to /assets/img/photos/).
+  With no photo, a decorative illustrated panel with an icon is shown instead.
+-#}
+{% macro imageSlot(photo, fallbackIcon="book-open", extraClass="", slotName="IMAGE SLOT") -%}
+<!-- {{ slotName }} -->
+<figure class="media-slot {{ extraClass }}{% if not photo %} media-slot--art{% endif %}"{% if not photo %} aria-hidden="true"{% endif %}>
+  {%- if photo %}
+  <picture>
+    <source type="image/webp" srcset="/assets/img/photos/{{ photo.file }}-800.webp 800w, /assets/img/photos/{{ photo.file }}-1600.webp 1600w" sizes="(min-width: 900px) 50vw, 100vw">
+    <img src="/assets/img/photos/{{ photo.file }}-800.jpg" srcset="/assets/img/photos/{{ photo.file }}-800.jpg 800w, /assets/img/photos/{{ photo.file }}-1600.jpg 1600w" sizes="(min-width: 900px) 50vw, 100vw" alt="{{ photo.alt }}" width="{{ photo.width or 1600 }}" height="{{ photo.height or 1067 }}" loading="lazy" decoding="async">
+  </picture>
+  {%- if photo.caption %}<figcaption>{{ photo.caption }}</figcaption>{% endif %}
+  {%- else %}
+  <span class="media-slot__icon">{{ iconSvg(fallbackIcon) | safe }}</span>
+  {%- endif %}
+</figure>
+{%- endmacro %}
+
+{#- Compact pathway diagram (Home). data = pathway.summary -#}
+{% macro pathwaySummary(data) -%}
+<ol class="pathway" aria-label="LightLearnTech learning pathway">
+  {%- for s in data.steps %}
+  <li class="pathway__item">
+    <div class="pnode">
+      <span class="pnode__icon">{{ iconSvg(s.icon) | safe }}</span>
+      <span class="pnode__title">{{ s.title }}</span>
+      {%- if s.tag %}<span class="pnode__tag">{{ s.tag }}</span>{% endif %}
+    </div>
+    <span class="pathway__arrow">{{ iconSvg("arrow-down") | safe }}</span>
+  </li>
+  {%- endfor %}
+  <li class="pathway__item pathway__item--branch">
+    <span class="visually-hidden">Then one of two tracks:</span>
+    <div class="ptracks-wrap">
+      <ul class="ptracks">
+        {%- for t in data.tracks %}
+        <li class="ptrack">
+          <div class="pnode pnode--track">
+            <span class="pnode__icon">{{ iconSvg(t.icon) | safe }}</span>
+            <span class="pnode__title">{{ t.title }}</span>
+          </div>
+        </li>
+        {%- endfor %}
+      </ul>
+      <span class="ptracks__or" aria-hidden="true">{{ data.branchLabel }}</span>
+    </div>
+    <span class="pathway__arrow">{{ iconSvg("arrow-down") | safe }}</span>
+  </li>
+  <li class="pathway__item">
+    <div class="pnode pnode--final">
+      <span class="pnode__icon">{{ iconSvg(data.final.icon) | safe }}</span>
+      <span class="pnode__title">{{ data.final.title }}</span>
+      {%- if data.final.tag %}<span class="pnode__tag">{{ data.final.tag }}</span>{% endif %}
+    </div>
+  </li>
+</ol>
+{%- endmacro %}
+
+{#- Detailed pathway diagram (Our Programme). data = pathway.full -#}
+{% macro pathwayFull(data) -%}
+<div class="flow">
+  <ol class="flow__list" aria-label="LightLearnTech programme pathway, step by step">
+    {%- for s in data.steps %}
+    <li class="flow__item">
+      <div class="fnode">
+        <span class="fnode__icon">{{ iconSvg(s.icon) | safe }}</span>
+        <div>
+          {%- if s.tag %}<p class="fnode__tag">{{ s.tag }}</p>{% endif %}
+          <h3 class="fnode__title">{{ s.title }}</h3>
+          {%- if s.text %}<p class="fnode__text">{{ s.text }}</p>{% endif %}
+        </div>
+      </div>
+      <span class="flow__arrow">{{ iconSvg("arrow-down") | safe }}</span>
+    </li>
+    {%- endfor %}
+    <li class="flow__item flow__item--branch">
+      <p class="flow__branch-tag">{{ data.branchTag }}</p>
+      <div class="ftracks">
+        <ul class="ftracks__list">
+          {%- for t in data.tracks %}
+          <li class="ftrack">
+            <span class="fnode__icon">{{ iconSvg(t.icon) | safe }}</span>
+            <h3 class="fnode__title">{{ t.title }}</h3>
+          </li>
+          {%- endfor %}
+        </ul>
+        <p class="ftracks__switch"><span class="ftracks__switch-icon">{{ iconSvg("arrow-left-right") | safe }}</span>{{ data.switchNote }}</p>
+      </div>
+      <span class="flow__arrow">{{ iconSvg("arrow-down") | safe }}</span>
+    </li>
+    <li class="flow__item">
+      <div class="fnode fnode--final">
+        <span class="fnode__icon">{{ iconSvg(data.final.icon) | safe }}</span>
+        <div>
+          {%- if data.final.tag %}<p class="fnode__tag">{{ data.final.tag }}</p>{% endif %}
+          <h3 class="fnode__title">{{ data.final.title }}</h3>
+          {%- if data.final.text %}<p class="fnode__text">{{ data.final.text }}</p>{% endif %}
+        </div>
+      </div>
+    </li>
+  </ol>
+  {%- if data.note %}
+  <p class="flow__note">{{ iconSvg("info") | safe }}<span>{{ data.note }}</span></p>
+  {%- endif %}
+</div>
+{%- endmacro %}
+
+{#- Call-to-action band. cta = { heading, text, buttons }. tone: "dark" | "light" -#}
+{% macro ctaBand(cta, tone="dark") -%}
+{%- if cta and cta.heading %}
+<section class="cta-band cta-band--{{ tone }}" aria-labelledby="cta-{{ cta.heading | anchor }}">
+  <div class="container cta-band__inner">
+    <h2 id="cta-{{ cta.heading | anchor }}" class="cta-band__heading">{{ cta.heading }}</h2>
+    {%- if cta.text %}<p class="cta-band__text">{{ cta.text }}</p>{% endif %}
+    {{ buttons(cta.buttons) }}
+  </div>
+</section>
+{%- endif %}
+{%- endmacro %}
+
+{#-
+  Form, handled by Netlify Forms (data-netlify). f = an entry in src/_data/forms.json.
+  - "form-name" tells Netlify which form this is.
+  - "subject" sets the notification email's subject line.
+  - "bot-field" is the honeypot: humans never see it; submissions that fill it are discarded.
+  Without JavaScript the form posts normally and lands on /thank-you/.
+-#}
+{% macro form(f, note="") -%}
+<div class="form-wrap" data-form-wrap>
+  <form id="{{ f.id }}" name="{{ f.name }}" class="form" method="POST" action="/thank-you/"
+        data-netlify="true" netlify-honeypot="bot-field" data-enhanced-form>
+    <input type="hidden" name="form-name" value="{{ f.name }}">
+    <input type="hidden" name="subject" value="{{ f.subject }}" data-subject>
+    <div class="hp" aria-hidden="true">
+      <label for="{{ f.id }}-bot">Leave this field empty</label>
+      <input id="{{ f.id }}-bot" name="bot-field" type="text" tabindex="-1" autocomplete="off">
+    </div>
+
+    <p class="form__required-note">Fields marked with <span class="req" aria-hidden="true">*</span> are required.</p>
+
+    <div class="form__summary" role="alert" tabindex="-1" hidden data-error-summary>
+      <h3 class="form__summary-heading">Please check the following:</h3>
+      <ul></ul>
+    </div>
+
+    {%- for field in f.fields %}
+    {%- set fid = f.id ~ "-" ~ field.name %}
+    {%- set describedBy = (fid ~ "-hint " if field.hint else "") ~ fid ~ "-error" %}
+
+    {%- if field.type == "radio" %}
+    <fieldset class="field field--choices" id="{{ fid }}" aria-describedby="{{ describedBy }}"{% if field.required %} data-required-group="{{ field.name }}"{% endif %}>
+      <legend class="field__label">{{ field.label }}{% if field.required %} <span class="req" aria-hidden="true">*</span>{% endif %}</legend>
+      {%- if field.hint %}<p class="field__hint" id="{{ fid }}-hint">{{ field.hint }}</p>{% endif %}
+      <div class="choices">
+        {%- for opt in field.options %}
+        <label class="choice"><input type="radio" name="{{ field.name }}" value="{{ opt }}"{% if field.required %} required{% endif %}> <span>{{ opt }}</span></label>
+        {%- endfor %}
+      </div>
+      <p class="field__error" id="{{ fid }}-error" hidden></p>
+    </fieldset>
+    {%- else %}
+    <div class="field">
+      <label class="field__label" for="{{ fid }}">{{ field.label }}{% if field.required %} <span class="req" aria-hidden="true">*</span><span class="visually-hidden"> (required)</span>{% endif %}</label>
+      {%- if field.hint %}<p class="field__hint" id="{{ fid }}-hint">{{ field.hint }}</p>{% endif %}
+      {%- if field.type == "select" %}
+      <select id="{{ fid }}" name="{{ field.name }}"{% if field.required %} required{% endif %} aria-describedby="{{ describedBy }}"{% if field.prefillParam %} data-prefill="{{ field.prefillParam }}"{% endif %}>
+        <option value="">Please choose</option>
+        {%- for opt in field.options %}
+        <option value="{{ opt }}">{{ opt }}</option>
+        {%- endfor %}
+      </select>
+      {%- elif field.type == "textarea" %}
+      <textarea id="{{ fid }}" name="{{ field.name }}" rows="5" maxlength="5000"{% if field.required %} required{% endif %} aria-describedby="{{ describedBy }}"></textarea>
+      {%- else %}
+      <input id="{{ fid }}" name="{{ field.name }}" type="{{ field.type }}" maxlength="200"{% if field.autocomplete %} autocomplete="{{ field.autocomplete }}"{% endif %}{% if field.type == "email" %} spellcheck="false"{% endif %}{% if field.required %} required{% endif %} aria-describedby="{{ describedBy }}">
+      {%- endif %}
+      <p class="field__error" id="{{ fid }}-error" hidden></p>
+    </div>
+    {%- endif %}
+    {%- endfor %}
+
+    {%- if note %}
+    <p class="form__note">{{ iconSvg("shield-check") | safe }}<span>{{ note | replace("Safeguarding Statement", '<a href="/safeguarding/">Safeguarding Statement</a>') | safe }}</span></p>
+    {%- endif %}
+
+    <p class="form__privacy">We use your details only to respond to you. Read our <a href="/privacy-policy/">Privacy Policy</a>.</p>
+
+    <button class="btn btn--primary form__submit" type="submit" data-submit>{{ f.submitLabel }}</button>
+    <p class="form__status" role="status" aria-live="polite" data-status></p>
+  </form>
+
+  <div class="form-success" tabindex="-1" hidden data-success>
+    <span class="form-success__icon">{{ iconSvg("circle-check-big") | safe }}</span>
+    <h3 class="form-success__heading">{{ f.success.heading }}</h3>
+    <p>{{ f.success.text }}</p>
+  </div>
+</div>
+{%- endmacro %}

@@ -1,0 +1,44 @@
+{
+  "name": "LightLearnTech",
+  "legalName": "LightLearnTech Initiative",
+  "tagline": "Reforming and Enhancing Futures through Technology and Education",
+  "shortLine": "Education. Technology. Opportunity.",
+  "missionLine": "Expanding access to quality education and technology for underserved children and young people in Nigeria.",
+  "url": "https://lightlearntech.org",
+  "locale": "en_GB",
+  "lang": "en-GB",
+  "defaultShareImage": "/assets/img/share-card.png",
+  "defaultShareImageAlt": "LightLearnTech: Education. Technology. Opportunity.",
+
+  "contact": {
+    "email": "tomiolufolaji@gmail.com",
+    "phoneDisplay": "+234 901 907 2073",
+    "phoneHref": "+2349019072073"
+  },
+
+  "registrationNumber": "",
+
+  "social": {
+    "instagram": "",
+    "linkedin": "",
+    "x": "",
+    "facebook": ""
+  },
+
+  "nav": [
+    { "label": "Home", "url": "/" },
+    { "label": "About Us", "url": "/about/" },
+    { "label": "What We Do", "url": "/what-we-do/" },
+    { "label": "Our Programme", "url": "/our-programme/" },
+    { "label": "Projects", "url": "/projects/" },
+    { "label": "Get Involved", "url": "/get-involved/" },
+    { "label": "Contact", "url": "/contact/" }
+  ],
+
+  "headerButton": { "label": "Get Involved", "url": "/get-involved/" },
+
+  "legalLinks": [
+    { "label": "Privacy Policy", "url": "/privacy-policy/" },
+    { "label": "Safeguarding Statement", "url": "/safeguarding/" }
+  ]
+}

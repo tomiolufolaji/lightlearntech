@@ -1,0 +1,35 @@
+---
+layout: layouts/base.njk
+pageKey: contact
+permalink: /contact/
+---
+{#- Copy: src/_data/pages/contact.json. Contact details: src/_data/site.json. Form: src/_data/forms.json -#}
+{%- import "components/ui.njk" as ui with context -%}
+{%- set c = pages.contact -%}
+{%- set socialLabels = { instagram: "Instagram", linkedin: "LinkedIn", x: "X (formerly Twitter)", facebook: "Facebook" } -%}
+{%- set hasSocial = site.social.instagram or site.social.linkedin or site.social.x or site.social.facebook -%}
+
+{{ ui.hero(c.hero) }}
+
+<section class="section" aria-label="Contact LightLearnTech">
+  <div class="container form-layout">
+    {%- if site.contact.email or site.contact.phoneDisplay or hasSocial %}
+    <div class="form-layout__intro">
+      <h2>{{ c.detailsHeading }}</h2>
+      <ul class="contact-list contact-list--large">
+        {%- if site.contact.email %}
+        <li>{{ iconSvg("mail") | safe }}<div><span class="contact-list__label">Email</span><a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a></div></li>
+        {%- endif %}
+        {%- if site.contact.phoneDisplay %}
+        <li>{{ iconSvg("phone") | safe }}<div><span class="contact-list__label">Phone</span><a href="tel:{{ site.contact.phoneHref }}">{{ site.contact.phoneDisplay }}</a></div></li>
+        {%- endif %}
+      </ul>
+      {%- if hasSocial %}{% include "components/social.njk" %}{% endif %}
+    </div>
+    {%- endif %}
+    <div class="panel">
+      <h2 class="panel__heading">{{ c.formHeading }}</h2>
+      {{ ui.form(forms.contact) }}
+    </div>
+  </div>
+</section>

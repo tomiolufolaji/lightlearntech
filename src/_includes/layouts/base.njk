@@ -1,0 +1,75 @@
+{#- Base layout used by every page.
+    Page metadata comes from (in order): pages[pageKey].meta in src/_data/pages/*.json,
+    or metaTitle / metaDescription set in a page's front matter. -#}
+{%- if pageKey and pages[pageKey] -%}
+  {%- set _title = pages[pageKey].meta.title -%}
+  {%- set _description = pages[pageKey].meta.description -%}
+{%- else -%}
+  {%- set _title = metaTitle or (title ~ " | " ~ site.name) -%}
+  {%- set _description = metaDescription or site.missionLine -%}
+{%- endif -%}
+{%- set _canonical = site.url ~ page.url | replace("index.html", "") -%}
+{%- set _image = site.url ~ (shareImage or site.defaultShareImage) -%}
+<!doctype html>
+<html lang="{{ site.lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ _title }}</title>
+  <meta name="description" content="{{ _description }}">
+  {%- if noindex %}
+  <meta name="robots" content="noindex, follow">
+  {%- else %}
+  <link rel="canonical" href="{{ _canonical }}">
+  {%- endif %}
+  <meta name="theme-color" content="#0b1f4d">
+
+  <link rel="preload" href="/assets/fonts/lexend-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/main.css?v={{ buildDate }}">
+  <noscript><link rel="stylesheet" href="/assets/css/no-js.css"></noscript>
+  <script src="/assets/js/main.js?v={{ buildDate }}" defer></script>
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ site.legalName }}">
+  <meta property="og:locale" content="{{ site.locale }}">
+  <meta property="og:title" content="{{ _title }}">
+  <meta property="og:description" content="{{ _description }}">
+  <meta property="og:url" content="{{ _canonical }}">
+  <meta property="og:image" content="{{ _image }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{{ site.defaultShareImageAlt }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ _title }}">
+  <meta name="twitter:description" content="{{ _description }}">
+  <meta name="twitter:image" content="{{ _image }}">
+  <meta name="twitter:image:alt" content="{{ site.defaultShareImageAlt }}">
+  {%- if page.url == "/" %}
+  <script type="application/ld+json">{{ {
+    "@context": "https://schema.org",
+    "@type": "NGO",
+    "name": site.legalName,
+    "alternateName": site.name,
+    "url": site.url,
+    "slogan": site.tagline,
+    "email": site.contact.email or undefined,
+    "telephone": site.contact.phoneHref or undefined,
+    "areaServed": "Nigeria",
+    "logo": site.url ~ "/apple-touch-icon.png"
+  } | dump | safe }}</script>
+  {%- endif %}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  {% include "components/header.njk" %}
+  <main id="main" tabindex="-1">
+    {{ content | safe }}
+  </main>
+  {% include "components/footer.njk" %}
+</body>
+</html>

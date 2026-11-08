@@ -1,0 +1,17 @@
+---
+layout: layouts/base.njk
+permalink: /thank-you/
+metaTitle: Message sent | LightLearnTech
+metaDescription: Thank you for contacting LightLearnTech.
+noindex: true
+excludeFromSitemap: true
+---
+{#- Shown after a form is sent without JavaScript. With JavaScript, a success message appears in place of the form. -#}
+<section class="section error-page">
+  <div class="container narrow text-center">
+    <span class="error-page__icon">{{ iconSvg("circle-check-big") | safe }}</span>
+    <h1>Thank you, your message has been sent</h1>
+    <p class="lead">The LightLearnTech team has received your message and will reply by email.</p>
+    <a class="btn btn--primary" href="/">Return to the home page</a>
+  </div>
+</section>

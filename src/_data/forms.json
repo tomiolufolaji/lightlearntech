@@ -1,0 +1,72 @@
+{
+  "_comment": "Form definitions. Each form is rendered by src/_includes/components/form.njk and handled by Netlify Forms. 'subject' becomes the subject line of the notification email. Field 'name' values must stay stable once live (they are the keys in submissions).",
+
+  "volunteer": {
+    "name": "volunteer",
+    "id": "volunteer-form",
+    "subject": "Volunteer form – LightLearnTech website",
+    "submitLabel": "Send volunteer application",
+    "success": {
+      "heading": "Thank you for offering to volunteer",
+      "text": "Your application has been sent to the LightLearnTech team. We will reply by email."
+    },
+    "fields": [
+      { "name": "full_name", "label": "Full name", "type": "text", "required": true, "autocomplete": "name" },
+      { "name": "email", "label": "Email", "type": "email", "required": true, "autocomplete": "email" },
+      { "name": "phone", "label": "Phone", "type": "tel", "autocomplete": "tel" },
+      { "name": "location", "label": "Location", "hint": "City and state", "type": "text", "autocomplete": "address-level2" },
+      {
+        "name": "area_of_interest", "label": "Area of interest", "type": "select", "required": true,
+        "options": ["Teaching", "Programming", "Robotics", "Media & Communications", "Fundraising", "Other"]
+      },
+      {
+        "name": "availability", "label": "Availability", "type": "radio",
+        "options": ["Weekdays", "Weekends", "Remote only", "Flexible"]
+      },
+      { "name": "message", "label": "Message", "type": "textarea" }
+    ]
+  },
+
+  "partner": {
+    "name": "partner",
+    "id": "partner-form",
+    "subject": "Partner form – LightLearnTech website",
+    "submitLabel": "Send partnership enquiry",
+    "success": {
+      "heading": "Thank you for your interest in partnering with us",
+      "text": "Your enquiry has been sent to the LightLearnTech team. We will reply by email."
+    },
+    "fields": [
+      { "name": "organisation", "label": "Organisation name", "type": "text", "required": true, "autocomplete": "organization" },
+      { "name": "contact_person", "label": "Contact person", "type": "text", "required": true, "autocomplete": "name" },
+      { "name": "email", "label": "Email", "type": "email", "required": true, "autocomplete": "email" },
+      { "name": "phone", "label": "Phone", "type": "tel", "autocomplete": "tel" },
+      {
+        "name": "partnership_type", "label": "Type of partnership", "type": "select", "required": true,
+        "options": ["Funding", "Equipment", "Training", "Content", "Other"]
+      },
+      { "name": "message", "label": "Message", "type": "textarea", "required": true }
+    ]
+  },
+
+  "contact": {
+    "name": "contact",
+    "id": "contact-form",
+    "subject": "Contact form – LightLearnTech website",
+    "submitLabel": "Send message",
+    "success": {
+      "heading": "Thank you for getting in touch",
+      "text": "Your message has been sent to the LightLearnTech team. We will reply by email."
+    },
+    "fields": [
+      { "name": "name", "label": "Name", "type": "text", "required": true, "autocomplete": "name" },
+      { "name": "email", "label": "Email", "type": "email", "required": true, "autocomplete": "email" },
+      {
+        "name": "enquiry_type", "label": "Enquiry type", "type": "select", "required": true, "prefillParam": "enquiry",
+        "options": ["General", "Partnership", "Volunteering", "Support", "Media"]
+      },
+      { "name": "enquiry_subject", "label": "Subject", "type": "text" },
+      { "name": "message", "label": "Message", "type": "textarea", "required": true }
+    ]
+  }
+}

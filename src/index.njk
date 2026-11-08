@@ -1,0 +1,74 @@
+---
+layout: layouts/base.njk
+pageKey: home
+permalink: /
+---
+{#- Content: src/_data/pages/home.json, src/_data/focusAreas.json, src/_data/pathway.json -#}
+{%- import "components/ui.njk" as ui with context -%}
+{%- set c = pages.home -%}
+
+{{ ui.hero(c.hero, "home") }}
+
+{%- if c.challenge.show %}
+<section class="section section--soft" aria-labelledby="challenge-heading">
+  <div class="container narrow challenge">
+    {{ ui.sectionHead(c.challenge.eyebrow, c.challenge.heading, "", "challenge-heading") }}
+    {%- for p in c.challenge.paragraphs %}
+    <p class="lead">{{ p }}</p>
+    {%- endfor %}
+    {%- if c.challenge.statistic.text and c.challenge.statistic.source %}
+    <p class="lead">{{ c.challenge.statistic.text }}</p>
+    <p class="source">Source: {{ c.challenge.statistic.source }}{% if c.challenge.statistic.year %}, {{ c.challenge.statistic.year }}{% endif %}</p>
+    {%- endif %}
+  </div>
+</section>
+{%- endif %}
+
+{%- if c.pathway.show %}
+<section class="section" aria-labelledby="pathway-heading">
+  <div class="container">
+    {{ ui.sectionHead(c.pathway.eyebrow, c.pathway.heading, "", "pathway-heading", "center") }}
+    <figure class="pathway-figure">
+      {{ ui.pathwaySummary(pathway.summary) }}
+      <figcaption class="pathway-figure__caption">{{ pathway.summary.caption }}</figcaption>
+    </figure>
+    <p class="text-center"><a class="link-arrow" href="{{ c.pathway.link.url }}">{{ c.pathway.link.label }} {{ iconSvg("arrow-right") | safe }}</a></p>
+  </div>
+</section>
+{%- endif %}
+
+{%- if c.whatWeDo.show %}
+<section class="section section--tint" aria-labelledby="wwd-heading">
+  <div class="container">
+    {{ ui.sectionHead(c.whatWeDo.eyebrow, c.whatWeDo.heading, "", "wwd-heading", "center") }}
+    <div class="grid grid--cards">
+      {%- for a in focusAreas %}
+      {{ ui.card({ icon: a.icon, title: a.title, text: a.summary, url: c.whatWeDo.cardLinkUrl ~ "#" ~ a.id, linkLabel: "Learn more" }) }}
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+{%- endif %}
+
+{%- if c.featuredProject.show %}
+{%- set fp = collections.projects | findBySlug(c.featuredProject.projectSlug) %}
+{%- if fp %}
+<section class="section" aria-labelledby="featured-heading">
+  <div class="container split">
+    {{ ui.imageSlot(c.featuredProject.photo, "school", "split__media", "IMAGE SLOT: home featured project (pages/home.json → featuredProject.photo)") }}
+    <div class="split__copy">
+      <p class="eyebrow">{{ c.featuredProject.eyebrow }}</p>
+      <h2 id="featured-heading">{{ fp.data.title }}</h2>
+      <div class="project-card__meta">
+        {{ ui.status(fp.data.status) }}
+        {%- if fp.data.location %}<span class="meta-item">{{ iconSvg("map-pin") | safe }}{{ fp.data.location }}</span>{% endif %}
+      </div>
+      <p class="lead">{{ c.featuredProject.text }}</p>
+      <a class="btn btn--primary" href="{{ c.featuredProject.link.url }}">{{ c.featuredProject.link.label }}<span class="visually-hidden"> about our projects</span></a>
+    </div>
+  </div>
+</section>
+{%- endif %}
+{%- endif %}
+
+{%- if c.cta.show %}{{ ui.ctaBand(c.cta, "dark") }}{% endif %}

@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "title": "Projects | LightLearnTech",
+    "description": "LightLearnTech projects, including the IDP Camp Education Initiative in Benue State, Nigeria, and the AI Learning Assistant for teachers."
+  },
+  "hero": {
+    "eyebrow": "Projects",
+    "heading": "Our work in communities",
+    "text": "A showcase of LightLearnTech's work in communities."
+  },
+  "labels": {
+    "location": "Location",
+    "date": "Date",
+    "status": "Status",
+    "purpose": "Purpose",
+    "findings": "What we found",
+    "activities": "Activities",
+    "progress": "Progress",
+    "media": "Media",
+    "readMore": "View project",
+    "back": "All projects"
+  },
+  "cta": {
+    "heading": "Help us extend this work",
+    "text": "Equipment, educational resources, skills and partnerships all help more children learn.",
+    "buttons": [
+      { "label": "Get Involved", "url": "/get-involved/", "style": "primary" },
+      { "label": "Contact us", "url": "/contact/", "style": "secondary" }
+    ]
+  }
+}

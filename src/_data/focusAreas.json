@@ -1,0 +1,38 @@
+[
+  {
+    "id": "foundational-education",
+    "icon": "book-open",
+    "title": "Foundational Education",
+    "summary": "Strengthening learning through appropriate curricula, textbooks and educational resources.",
+    "detail": "We support teachers and learners with curriculum-aligned Mathematics, English and Science textbooks, teaching materials and digital learning resources, including educational videos shown on rechargeable projectors."
+  },
+  {
+    "id": "digital-literacy",
+    "icon": "laptop",
+    "title": "Digital Literacy",
+    "summary": "Providing access to digital tools, learning resources and technology.",
+    "detail": "We introduce learners to computers, digital learning and technology."
+  },
+  {
+    "id": "programming",
+    "icon": "code-xml",
+    "title": "Programming & Computational Thinking",
+    "detailTitle": "Programming",
+    "summary": "Developing problem-solving and programming skills.",
+    "detail": "We develop computational thinking, problem-solving and programming skills through structured training."
+  },
+  {
+    "id": "stem-robotics",
+    "icon": "bot",
+    "title": "STEM & Robotics",
+    "summary": "Providing practical, hands-on technology and engineering experiences.",
+    "detail": "We provide hands-on opportunities to explore robotics, engineering and practical problem-solving."
+  },
+  {
+    "id": "ai-innovation",
+    "icon": "sparkles",
+    "title": "AI & Innovation",
+    "summary": "Exploring emerging technologies and innovative approaches to learning.",
+    "detail": "We are building the LightLearnTech AI Learning Assistant to support teachers, and we introduce learners to emerging technologies such as AI."
+  }
+]

@@ -1,0 +1,22 @@
+---
+layout: layouts/base.njk
+pageKey: projects
+permalink: /projects/
+---
+{#- Listing copy: src/_data/pages/projects.json. Projects: one file each in src/projects/*.md -#}
+{%- import "components/ui.njk" as ui with context -%}
+{%- set c = pages.projects -%}
+
+{{ ui.hero(c.hero) }}
+
+<section class="section" aria-label="Projects">
+  <div class="container">
+    <div class="grid grid--projects">
+      {%- for p in collections.projects %}
+      {{ ui.projectCard(p, c.labels) }}
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+{{ ui.ctaBand(c.cta, "light") }}

@@ -1,0 +1,52 @@
+{%- set socialLabels = { instagram: "Instagram", linkedin: "LinkedIn", x: "X (formerly Twitter)", facebook: "Facebook" } -%}
+{%- set hasSocial = site.social.instagram or site.social.linkedin or site.social.x or site.social.facebook -%}
+<footer class="site-footer">
+  <div class="container site-footer__grid">
+    <div class="site-footer__brand">
+      <a class="wordmark wordmark--light" href="/" aria-label="{{ site.name }} home">
+        {% include "components/mark.njk" %}
+        <span class="wordmark__text">{{ site.name }}</span>
+      </a>
+      <p class="site-footer__mission">{{ site.missionLine }}</p>
+      <p class="site-footer__tagline">{{ site.tagline }}</p>
+    </div>
+
+    <nav class="site-footer__nav" aria-label="Footer">
+      <h2 class="site-footer__heading">Pages</h2>
+      <ul>
+        {%- for item in site.nav %}
+        <li><a href="{{ item.url }}">{{ item.label }}</a></li>
+        {%- endfor %}
+      </ul>
+    </nav>
+
+    {%- if site.contact.email or site.contact.phoneDisplay or hasSocial %}
+    <div class="site-footer__contact">
+      <h2 class="site-footer__heading">Contact</h2>
+      <ul class="contact-list contact-list--light">
+        {%- if site.contact.email %}
+        <li>{{ iconSvg("mail") | safe }}<a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a></li>
+        {%- endif %}
+        {%- if site.contact.phoneDisplay %}
+        <li>{{ iconSvg("phone") | safe }}<a href="tel:{{ site.contact.phoneHref }}">{{ site.contact.phoneDisplay }}</a></li>
+        {%- endif %}
+      </ul>
+      {%- if hasSocial %}
+      {% include "components/social.njk" %}
+      {%- endif %}
+    </div>
+    {%- endif %}
+  </div>
+
+  <div class="container site-footer__base">
+    <ul class="site-footer__legal">
+      {%- for item in site.legalLinks %}
+      <li><a href="{{ item.url }}">{{ item.label }}</a></li>
+      {%- endfor %}
+    </ul>
+    <p>
+      {%- if site.registrationNumber %}Registration number: {{ site.registrationNumber }}. {% endif -%}
+      &copy; {{ buildYear }} {{ site.legalName }}
+    </p>
+  </div>
+</footer>

@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "title": "About Us | LightLearnTech",
+    "description": "Why LightLearnTech exists: our story, vision, mission and commitment to girls in technology, for children in Nigeria's IDP camps and underserved communities."
+  },
+  "hero": {
+    "eyebrow": "About Us",
+    "heading": "Every child deserves strong foundations and a path into technology",
+    "text": "LightLearnTech Initiative combines traditional education with digital skills development for underserved children and young people in Nigeria."
+  },
+  "story": {
+    "heading": "Our Story",
+    "paragraphs": [
+      "LightLearnTech was inspired by the educational and technological gaps we observed among young people in our community. On visits to local schools, we found that many students had little or no exposure to technology. In one school, students had never heard of ChatGPT. When technology training was offered, boys dominated participation and very few girls took part.",
+      "Researching educational challenges across Nigeria, we learned about the conditions facing children in Internally Displaced Persons (IDP) camps. Beyond the hardship of displacement, many of these children have limited access to quality education and almost no exposure to technology.",
+      "These observations led to LightLearnTech. We combine traditional education with digital skills development, with a special focus on girls in IDP camps, to give children the knowledge, confidence and technological exposure to reach greater opportunities."
+    ],
+    "photo": null
+  },
+  "vision": {
+    "heading": "Our Vision",
+    "icon": "eye",
+    "text": "A future where every child, regardless of their circumstances, has the educational foundation, technological exposure and opportunities needed to discover their potential and build a meaningful future."
+  },
+  "mission": {
+    "heading": "Our Mission",
+    "icon": "target",
+    "text": "To strengthen access to quality education and technology for underserved children and young people by providing foundational learning, digital skills, practical STEM experiences and pathways to future opportunities."
+  },
+  "beliefs": {
+    "heading": "What We Believe",
+    "text": "We believe a child's circumstances should not define their potential. Through education, technology and innovation, we seek to expand what young people can learn, explore and achieve."
+  },
+  "girls": {
+    "heading": "Our commitment to girls",
+    "icon": "graduation-cap",
+    "text": "We actively work to increase girls' participation in technology, so that opportunities in programming, robotics and innovation are open to every child."
+  }
+}

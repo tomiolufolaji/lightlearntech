@@ -1,0 +1,28 @@
+---
+layout: layouts/base.njk
+pageKey: whatWeDo
+permalink: /what-we-do/
+---
+{#- Content: src/_data/pages/whatWeDo.json and src/_data/focusAreas.json -#}
+{%- import "components/ui.njk" as ui with context -%}
+{%- set c = pages.whatWeDo -%}
+
+{{ ui.hero(c.hero) }}
+
+<section class="section" aria-label="Our areas of work">
+  <div class="container narrow">
+    <ul class="area-list">
+      {%- for a in focusAreas %}
+      <li class="area" id="{{ a.id }}">
+        <span class="area__icon">{{ iconSvg(a.icon) | safe }}</span>
+        <div class="area__body">
+          <h2 class="area__title">{{ a.detailTitle or a.title }}</h2>
+          <p>{{ a.detail }}</p>
+        </div>
+      </li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+
+{{ ui.ctaBand(c.cta, "light") }}

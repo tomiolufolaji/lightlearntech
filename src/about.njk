@@ -1,0 +1,53 @@
+---
+layout: layouts/base.njk
+pageKey: about
+permalink: /about/
+---
+{#- Content: src/_data/pages/about.json -#}
+{%- import "components/ui.njk" as ui with context -%}
+{%- set c = pages.about -%}
+
+{{ ui.hero(c.hero) }}
+
+<section class="section" aria-labelledby="story-heading">
+  <div class="container split split--top">
+    <div class="split__copy prose">
+      <h2 id="story-heading">{{ c.story.heading }}</h2>
+      {%- for p in c.story.paragraphs %}
+      <p>{{ p }}</p>
+      {%- endfor %}
+    </div>
+    {{ ui.imageSlot(c.story.photo, "lightbulb", "split__media", "IMAGE SLOT: About – Our Story (pages/about.json → story.photo)") }}
+  </div>
+</section>
+
+<section class="section section--tint" aria-label="Vision and mission">
+  <div class="container grid grid--two">
+    {%- for block in [c.vision, c.mission] %}
+    <article class="statement">
+      <span class="card__icon">{{ iconSvg(block.icon) | safe }}</span>
+      <h2 class="statement__heading">{{ block.heading }}</h2>
+      <p class="statement__text">{{ block.text }}</p>
+    </article>
+    {%- endfor %}
+  </div>
+</section>
+
+<section class="section" aria-labelledby="believe-heading">
+  <div class="container narrow text-center">
+    <h2 id="believe-heading">{{ c.beliefs.heading }}</h2>
+    <p class="lead">{{ c.beliefs.text }}</p>
+  </div>
+</section>
+
+<section class="section section--warm" aria-labelledby="girls-heading">
+  <div class="container narrow feature-callout">
+    <span class="feature-callout__icon">{{ iconSvg(c.girls.icon) | safe }}</span>
+    <div>
+      <h2 id="girls-heading">{{ c.girls.heading }}</h2>
+      <p class="lead">{{ c.girls.text }}</p>
+    </div>
+  </div>
+</section>
+
+{{ ui.ctaBand(pages.home.cta, "dark") }}

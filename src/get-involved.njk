@@ -1,0 +1,49 @@
+---
+layout: layouts/base.njk
+pageKey: getInvolved
+permalink: /get-involved/
+---
+{#- Copy: src/_data/pages/getInvolved.json. Form fields: src/_data/forms.json -#}
+{%- import "components/ui.njk" as ui with context -%}
+{%- set c = pages.getInvolved -%}
+
+{{ ui.hero(c.hero) }}
+
+<section class="section" aria-label="Ways to get involved">
+  <div class="container">
+    <div class="grid grid--three">
+      {%- for o in c.options %}
+      <article class="option-card" id="{{ o.id }}">
+        <span class="card__icon">{{ iconSvg(o.icon) | safe }}</span>
+        <h2 class="card__title">{{ o.title }}</h2>
+        <p>{{ o.text }}</p>
+        <a class="btn btn--{{ 'accent' if loop.last else 'primary' }}" href="{{ o.button.url }}">{{ o.button.label }}</a>
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section--tint" aria-labelledby="volunteer-heading">
+  <div class="container form-layout">
+    <div class="form-layout__intro">
+      <h2 id="volunteer-heading">{{ c.volunteerSection.heading }}</h2>
+      <p>{{ c.volunteerSection.text }}</p>
+    </div>
+    <div class="panel">
+      {{ ui.form(forms.volunteer, c.volunteerSection.formNote) }}
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="partner-heading">
+  <div class="container form-layout">
+    <div class="form-layout__intro">
+      <h2 id="partner-heading">{{ c.partnerSection.heading }}</h2>
+      <p>{{ c.partnerSection.text }}</p>
+    </div>
+    <div class="panel">
+      {{ ui.form(forms.partner) }}
+    </div>
+  </div>
+</section>

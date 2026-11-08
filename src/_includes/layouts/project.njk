@@ -1,0 +1,74 @@
+---
+layout: layouts/base.njk
+---
+{#- Project detail layout. Data: front matter of src/projects/<slug>.md.
+    Any field left empty is not shown. Labels: src/_data/pages/projects.json → labels -#}
+{%- import "components/ui.njk" as ui with context -%}
+{%- set L = pages.projects.labels -%}
+
+<section class="hero hero--page" aria-labelledby="hero-heading">
+  <div class="container hero__inner">
+    <div class="hero__copy">
+      <p class="eyebrow"><a class="back-link" href="/projects/">{{ iconSvg("arrow-left") | safe }}{{ L.back }}</a></p>
+      <h1 id="hero-heading" class="hero__heading">{{ title }}</h1>
+      <dl class="facts">
+        {%- if status %}<div class="facts__item"><dt>{{ L.status }}</dt><dd>{{ ui.status(status) }}</dd></div>{% endif %}
+        {%- if location %}<div class="facts__item"><dt>{{ L.location }}</dt><dd>{{ location }}</dd></div>{% endif %}
+        {%- if projectDate %}<div class="facts__item"><dt>{{ L.date }}</dt><dd>{{ projectDate }}</dd></div>{% endif %}
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container narrow project-detail">
+    {%- if purpose %}
+    <div class="project-block project-block--purpose">
+      <h2>{{ L.purpose }}</h2>
+      <p class="lead">{{ purpose }}</p>
+    </div>
+    {%- endif %}
+
+    {%- if findings %}
+    <div class="project-block">
+      <h2>{{ L.findings }}</h2>
+      <p>{{ findings }}</p>
+    </div>
+    {%- endif %}
+
+    {%- if activities and activities.length %}
+    <div class="project-block">
+      <h2>{{ activitiesHeading or L.activities }}</h2>
+      <ul class="check-list">
+        {%- for a in activities %}
+        <li>{{ iconSvg("check") | safe }}<span>{{ a }}</span></li>
+        {%- endfor %}
+      </ul>
+    </div>
+    {%- endif %}
+
+    {%- if progress %}
+    <div class="project-block">
+      <h2>{{ L.progress }}</h2>
+      <p>{{ progress }}</p>
+    </div>
+    {%- endif %}
+
+    {%- if content and content | trim %}
+    <div class="project-block prose">{{ content | safe }}</div>
+    {%- endif %}
+
+    {%- if media and media.length %}
+    <div class="project-block">
+      <h2>{{ L.media }}</h2>
+      <div class="grid grid--two">
+        {%- for m in media %}
+        {{ ui.imageSlot(m, icon, "", "PROJECT MEDIA") }}
+        {%- endfor %}
+      </div>
+    </div>
+    {%- endif %}
+  </div>
+</section>
+
+{{ ui.ctaBand(pages.projects.cta, "light") }}

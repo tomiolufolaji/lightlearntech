@@ -1,0 +1,43 @@
+{
+  "meta": {
+    "title": "Get Involved | LightLearnTech",
+    "description": "Volunteer, partner with or support LightLearnTech to expand educational and technological opportunities for children in Nigeria who need them most."
+  },
+  "hero": {
+    "eyebrow": "Get Involved",
+    "heading": "Join us in opening doors for children",
+    "text": "Help us expand educational and technological opportunities for children who need them most."
+  },
+  "options": [
+    {
+      "id": "volunteer",
+      "icon": "hand-heart",
+      "title": "Volunteer",
+      "text": "Contribute your skills, time or experience.",
+      "button": { "label": "Volunteer with us", "url": "#volunteer-form" }
+    },
+    {
+      "id": "partner",
+      "icon": "handshake",
+      "title": "Partner",
+      "text": "Collaborate with LightLearnTech to expand educational and technological opportunities.",
+      "button": { "label": "Become a partner", "url": "#partner-form" }
+    },
+    {
+      "id": "support",
+      "icon": "gift",
+      "title": "Support",
+      "text": "Support our work with funding, equipment (laptops, projectors, robotics kits), educational resources or other contributions.",
+      "button": { "label": "Contact us to support", "url": "/contact/?enquiry=Support#contact-form" }
+    }
+  ],
+  "volunteerSection": {
+    "heading": "Volunteer with LightLearnTech",
+    "text": "Teachers, tech professionals and students are all welcome. Tell us about yourself and we will be in touch.",
+    "formNote": "All volunteers working with children complete a background check and agree to our Safeguarding Statement."
+  },
+  "partnerSection": {
+    "heading": "Partner with LightLearnTech",
+    "text": "We welcome local and international organisations interested in funding, equipment, training or content partnerships."
+  }
+}

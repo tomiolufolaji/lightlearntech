@@ -1,0 +1,23 @@
+{
+  "name": "lightlearntech-website",
+  "version": "1.0.0",
+  "description": "LightLearnTech Initiative website (Phase 1)",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy",
+    "images": "node scripts/optimise-photos.js",
+    "brand": "node scripts/make-brand-images.js"
+  },
+  "license": "UNLICENSED",
+  "type": "module",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.8",
+    "@fontsource-variable/lexend": "^5.3.0",
+    "lucide-static": "^1.70.0",
+    "sharp": "^0.35.5"
+  },
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  }
+}

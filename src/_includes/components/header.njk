@@ -1,0 +1,24 @@
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="wordmark" href="/" aria-label="{{ site.name }} home">
+      {% include "components/mark.njk" %}
+      <span class="wordmark__text">{{ site.name }}</span>
+    </a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="nav-toggle__open">{{ iconSvg("menu") | safe }}</span>
+      <span class="nav-toggle__close">{{ iconSvg("x") | safe }}</span>
+      <span class="nav-toggle__label">Menu</span>
+    </button>
+
+    <nav id="site-nav" class="site-nav" aria-label="Main">
+      <ul class="site-nav__list">
+        {%- for item in site.nav %}
+        {%- set active = (page.url == item.url) or (item.url != "/" and page.url.startsWith(item.url)) %}
+        <li><a class="site-nav__link" href="{{ item.url }}"{% if active %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
+        {%- endfor %}
+      </ul>
+      <a class="btn btn--accent site-nav__cta" href="{{ site.headerButton.url }}">{{ site.headerButton.label }}</a>
+    </nav>
+  </div>
+</header>
